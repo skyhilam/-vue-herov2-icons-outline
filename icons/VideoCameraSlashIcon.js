@@ -1,0 +1,29 @@
+export default {
+  name: 'VideoCameraSlashIcon',
+  
+  props: {
+    size: {
+      type: String,
+      default: '24',
+      validator: (s) => (!isNaN(s) || s.length >= 2 && !isNaN(s.slice(0, s.length -1)) && s.slice(-1) === 'x' )
+    }
+  },
+
+  functional: true,
+
+  render(h, ctx) {
+    const size = ctx.props.size.slice(-1) === 'x' 
+      ? ctx.props.size.slice(0, ctx.props.size.length -1) + 'em'
+      : parseInt(ctx.props.size) + 'px';
+
+    const attrs = ctx.data.attrs || {}
+    attrs.width = attrs.width || size
+    attrs.height = attrs.height || size
+    ctx.data.attrs = attrs
+  
+    return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...ctx.data}>
+<path d="M15.75 10.5L20.4697 5.78033C20.9421 5.30786 21.75 5.64248 21.75 6.31066V17.6893C21.75 18.3575 20.9421 18.6921 20.4697 18.2197L15.75 13.5M12 18.75H4.5C3.25736 18.75 2.25 17.7426 2.25 16.5V9M15.091 18.091L16.5 19.5M15.091 18.091C15.4982 17.6838 15.75 17.1213 15.75 16.5V7.5C15.75 6.25736 14.7426 5.25 13.5 5.25H4.5C3.87868 5.25 3.31618 5.50184 2.90901 5.90901M15.091 18.091L2.90901 5.90901M1.5 4.5L2.90901 5.90901" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+  }
+}
